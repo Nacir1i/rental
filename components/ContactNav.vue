@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SocialMediaLink } from '@/types';
+    import type { SocialMediaLink } from '@/types';
 
     const SOCIAL_MEDIA_LINKS: SocialMediaLink[] = [
         {
