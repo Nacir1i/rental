@@ -3,5 +3,6 @@
 <template>
     <ContactNav />
     <MainNav />
-     <slot />
+    <slot />
+    <MainFooter />
 </template>
