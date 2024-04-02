@@ -19,8 +19,8 @@
 
 <template>
     <footer class="relative w-full h-[600px]">
-        <NuxtImg class="object-cover w-full h-full" src="https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-        <div class="w-full h-full absolute top-0 left-0 bg-red-500/25 flex flex-col items-center justify-center gap-14 lg:gap-24">
+        <NuxtImg class="object-cover w-full h-full" provider="cloudinary" src="v1712082851/pexels-mike-bird-112460_ipaint.jpg" />
+        <div class="w-full h-full absolute top-0 left-0 bg-black/80 flex flex-col items-center justify-center gap-14 lg:gap-24">
             <div class="h-10 w-36 bg-red-300" />
             <div class="flex-col justify-center items-center hidden lg:flex">
                 <p class="text-black uppercase">: SHOWROOM LOCATION :</p>
