@@ -23,5 +23,7 @@ logs
 .env.*
 !.env.example
 
-# Prisma migrations
+# Prisma
 prisma/migrations
+prisma/dev.db
+prisma/test.db
