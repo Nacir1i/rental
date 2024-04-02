@@ -12,5 +12,10 @@ export default defineNuxtConfig({
      */
     componentDir: './components/ui'
   },
-  devtools: { enabled: true }
+  devtools: { enabled: true },
+  image: {
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/dfsz4lnjg/image/upload/'
+    }
+  }
 })
