@@ -4,17 +4,21 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "pnpm prisma:dev:migrate && nuxt dev",
+    "prisma:dev:migrate": "pnpm dlx prisma migrate dev --name init",
+    "prisma:seed": "tsx prisma/seed.ts",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@nuxt/image": "^1.4.0",
+    "@prisma/client": "5.12.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-vue-next": "^0.363.0",
     "nuxt": "^3.11.1",
+    "prisma": "^5.12.0",
     "radix-vue": "^1.6.1",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
@@ -23,7 +27,11 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "@types/node": "^20.12.2",
     "nuxt-icon": "^0.6.10",
-    "shadcn-nuxt": "^0.10.2"
+    "shadcn-nuxt": "^0.10.2",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.3"
   }
 }
