@@ -40,6 +40,7 @@
     "@types/node": "^20.12.2",
     "nuxt-icon": "^0.6.10",
     "shadcn-nuxt": "^0.10.2",
+    "tailwindcss-bg-patterns": "^0.3.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.7.1",
     "typescript": "^5.4.3"
