@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import { useWindowScroll } from '@vueuse/core'
     import type { NavLink } from '@/types';
     import { Button } from '@/components/ui/button'
 
@@ -20,11 +21,16 @@
             href: "/"
         }
     ]
+
+    const { y } = useWindowScroll()
+    const isContactNavVisible = computed(() => {
+        return y.value <= 150;
+    })
 </script>
 
 <template>
-    <div class="w-full absolute top-0 left-0 z-50">
-        <ContactNav />
+    <div class="w-full fixed top-0 left-0 z-50">
+        <ContactNav v-if="isContactNavVisible" />
         <div class="w-full flex justify-center items-center p-6 px-8 bg-gradient-to-b from-black/60 to-transparent">
             <div class="w-[1170px] flex justify-between items-center">
                 <div class="w-32 h-10 bg-red-400" />
