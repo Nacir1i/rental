@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import type { CarWithAlbum } from "@/server/api/car/all.get";
 
-const props = defineProps<{ car: CarWithAlbum }>();
+defineProps<{ car: CarWithAlbum }>();
 
-onMounted(() => {
-    console.log("props", props);
-})
+async function navigateToCar(id: number) {
+    await navigateTo(`/cars/${id}`);
+}
 </script>
 
 <template>
     <div class="w-[380px] h-[450px] grid grid-cols-1 grid-rows-10 border border-slate-500">
         <div class="col-span-1 row-span-6 relative">
             <NuxtImg class="w-full h-full object-cover absolute top-0 left-0 z-40" provider="cloudinary" :src="car.album[0]?.url" alt="#" />
-            <div class="bg-red-600 p-2 absolute bottom-5 right-5 z-50 text-center">
+            <div class="bg-red-600 p-2 absolute bottom-5 right-5 z-40 text-center">
                 <p class="text-white text-md">{{ car.price }} $</p>
                 <p class="text-white text-md">/ per day</p>
             </div>
@@ -41,7 +41,7 @@ onMounted(() => {
             </div>
         </div>
         <div class="col-span-1 row-span-1">
-            <Button class="w-full h-full col-span-1 row-span-1 rounded-none">
+            <Button @click="navigateToCar(car.id)" variant="link" class="w-full h-full col-span-1 row-span-1 rounded-none bg-primary text-white">
                 Read more
                 <Icon class="text-base text-white" name="i-material-symbols-double-arrow-rounded"/>
             </Button>

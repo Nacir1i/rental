@@ -17,6 +17,7 @@ type Testimonial = {
     profile: string;
 }
 
+const { data } = await useFetch<CarWithAlbum[]>('/api/car/all');
 const emblaMainApi = ref<CarouselApi>()
 const emblaThumbnailApi = ref<CarouselApi>()
 const selectedIndex = ref(0)
@@ -42,135 +43,6 @@ const TESTIMONIALS: Testimonial[] = [
         comment: "Fantastic car rental service all around! The convenience of booking, the quality of the vehicles, and the friendliness of the staff exceeded my expectations. The entire process was efficient and hassle-free, allowing me to focus more on enjoying my trip. Highly recommend this service for anyone in need of a dependable car rental solution.",
         profile: "v1712082851/cld-sample-5.jpg",
     }
-]
-
-const CARS: CarWithAlbum[] = [
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-mike-bird-170811_p9werg.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "bmw",
-        model: "A4",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-mike-bird-116675_oxrfuk.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "range rover",
-        model: "land road",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-mike-bird-244206_tgzjbf.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "audi",
-        model: "LMAO",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-mike-bird-810357_drksro.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "mercedes",
-        model: "LOL",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-aaron-curtis-119435_edwsrf.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "jeep",
-        model: "A4",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-kaan-durmuş-9263456_dredpc.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "dacia",
-        model: "A4",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
 ]
 
 function onSelect() {
@@ -244,7 +116,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
                 </div>
             </div>
             <div class="w-full md:w-4/5 gap-5 flex flex-wrap justify-center items-center">
-                <CardsHomeCar v-for="(car, index) in CARS" :key="index" :car="car" />
+                <CardsHomeCar v-for="(car, index) in data" :key="index" :car="car" />
             </div>
         </div>
         <div class="w-full h-[50rem] lg:h-[30rem] flex justify-center items-center relative">
