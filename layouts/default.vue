@@ -3,5 +3,5 @@
 <template>
     <MainNav />
     <slot />
-    <MainFooter />
+    <SecondaryFooter />
 </template>
