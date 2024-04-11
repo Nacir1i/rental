@@ -20,7 +20,7 @@
                 <DatePicker title="Start date" />
                 <DatePicker title="End date" />
                 <Select>
-                    <SelectTrigger>
+                    <SelectTrigger class="w-full lg:w-[280px]" >
                         <SelectValue placeholder="Select a mark" />
                     </SelectTrigger>
                     <SelectContent>
@@ -40,6 +40,7 @@
                         </SelectGroup>
                     </SelectContent>
                 </Select>
+                <Button class="uppercase" size="lg">find it now</Button>
             </div>
             <div class="absolute bottom-0 w-full [clip-path:polygon(50%_100%,_100%_0,_100%_100%,_0_100%,_0_0%)] h-[150px] bg-white" />
         </div>
