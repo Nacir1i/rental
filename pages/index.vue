@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { watchOnce } from '@vueuse/core'
 import Autoplay from 'embla-carousel-autoplay'
+import type { CarWithAlbum } from "@/server/api/car/all.get";
 import {
     Carousel,
     type CarouselApi,
@@ -16,7 +17,7 @@ type Testimonial = {
     profile: string;
 }
 
-const { data } = await useFetch('/api/car/all');
+const { data } = await useFetch<CarWithAlbum[]>('/api/car/all');
 const emblaMainApi = ref<CarouselApi>()
 const emblaThumbnailApi = ref<CarouselApi>()
 const selectedIndex = ref(0)
