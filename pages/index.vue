@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { data } = await useFetch("/api/car/all");
 import { watchOnce } from '@vueuse/core'
 import Autoplay from 'embla-carousel-autoplay'
+import type { CarWithAlbum } from "@/server/api/car/all.get";
 import {
     Carousel,
     type CarouselApi,
@@ -42,6 +42,135 @@ const TESTIMONIALS: Testimonial[] = [
         comment: "Fantastic car rental service all around! The convenience of booking, the quality of the vehicles, and the friendliness of the staff exceeded my expectations. The entire process was efficient and hassle-free, allowing me to focus more on enjoying my trip. Highly recommend this service for anyone in need of a dependable car rental solution.",
         profile: "v1712082851/cld-sample-5.jpg",
     }
+]
+
+const CARS: CarWithAlbum[] = [
+    {
+        id: 123,
+        price: 123,
+        album: [
+            {
+                id: 1,
+                url: "v1712082851/pexels-mike-bird-170811_p9werg.jpg",
+                carId: 1,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+        ],
+        mark: "bmw",
+        model: "A4",
+        release_year: 2016,
+        fuel: "diesel",
+        transmission: "manual",
+        distance_traveled: 123_456,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+    {
+        id: 123,
+        price: 123,
+        album: [
+            {
+                id: 1,
+                url: "v1712082851/pexels-mike-bird-116675_oxrfuk.jpg",
+                carId: 1,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+        ],
+        mark: "range rover",
+        model: "land road",
+        release_year: 2016,
+        fuel: "diesel",
+        transmission: "manual",
+        distance_traveled: 123_456,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+    {
+        id: 123,
+        price: 123,
+        album: [
+            {
+                id: 1,
+                url: "v1712082851/pexels-mike-bird-244206_tgzjbf.jpg",
+                carId: 1,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+        ],
+        mark: "audi",
+        model: "LMAO",
+        release_year: 2016,
+        fuel: "diesel",
+        transmission: "manual",
+        distance_traveled: 123_456,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+    {
+        id: 123,
+        price: 123,
+        album: [
+            {
+                id: 1,
+                url: "v1712082851/pexels-mike-bird-810357_drksro.jpg",
+                carId: 1,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+        ],
+        mark: "mercedes",
+        model: "LOL",
+        release_year: 2016,
+        fuel: "diesel",
+        transmission: "manual",
+        distance_traveled: 123_456,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+    {
+        id: 123,
+        price: 123,
+        album: [
+            {
+                id: 1,
+                url: "v1712082851/pexels-aaron-curtis-119435_edwsrf.jpg",
+                carId: 1,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+        ],
+        mark: "jeep",
+        model: "A4",
+        release_year: 2016,
+        fuel: "diesel",
+        transmission: "manual",
+        distance_traveled: 123_456,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+    {
+        id: 123,
+        price: 123,
+        album: [
+            {
+                id: 1,
+                url: "v1712082851/pexels-kaan-durmuş-9263456_dredpc.jpg",
+                carId: 1,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+        ],
+        mark: "dacia",
+        model: "A4",
+        release_year: 2016,
+        fuel: "diesel",
+        transmission: "manual",
+        distance_traveled: 123_456,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
 ]
 
 function onSelect() {
@@ -115,7 +244,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
                 </div>
             </div>
             <div class="w-full md:w-4/5 gap-5 flex flex-wrap justify-center items-center">
-                <CardsHomeCar v-for="(car, index) in data" :key="index" :car="car" />
+                <CardsHomeCar v-for="(car, index) in CARS" :key="index" :car="car" />
             </div>
         </div>
         <div class="w-full h-[50rem] lg:h-[30rem] flex justify-center items-center relative">
@@ -154,19 +283,19 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
                 </div>
             </div>
             <div class="w-full flex flex-col items-center">
-                <Carousel 
-                    class="relative w-full max-w-4xl"
-                    :plugins="[Autoplay({ delay: 7_000 })]"
-                >
+                <Carousel class="relative w-full max-w-4xl" :plugins="[Autoplay({ delay: 7_000 })]">
                     <CarouselContent>
                         <CarouselItem v-for="(testimonial, index) in TESTIMONIALS" :key="index">
                             <div class="p-1">
                                 <Card>
-                                    <CardContent class="flex flex-col items-center justify-center gap-14 p-6 text-center">
-                                        <Icon class="text-5xl text-red-600" name="i-fa6-solid-quote-right"/>
-                                        <p class="text-xl leading-loose italic text-gray-500">{{ testimonial.comment }}</p>
+                                    <CardContent
+                                        class="flex flex-col items-center justify-center gap-14 p-6 text-center">
+                                        <Icon class="text-5xl text-red-600" name="i-fa6-solid-quote-right" />
+                                        <p class="text-xl leading-loose italic text-gray-500">{{ testimonial.comment }}
+                                        </p>
                                         <div class="text-center space-y-2">
-                                            <NuxtImg class="w-20 h-20 rounded-full" provider="cloudinary" :src="testimonial.profile" />
+                                            <NuxtImg class="w-20 h-20 rounded-full" provider="cloudinary"
+                                                :src="testimonial.profile" />
                                             <p>{{ testimonial.name }}</p>
                                         </div>
                                     </CardContent>
