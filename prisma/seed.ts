@@ -54,7 +54,7 @@ const CARS = [
   },
   {
     price: 123,
-    url: "v1712082851/pexels-kaan-durmuş-9263456.jpg",
+    url: "v1712082851/pexels-kaan-durmuş-9263456_dredpc.jpg",
     mark: "dacia",
     model: "A4",
     release_year: 2016,
