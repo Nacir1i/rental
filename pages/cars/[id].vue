@@ -130,7 +130,7 @@ console.log(randomImageIndex);
                     </li>
                     <li class="w-full flex justify-between items-center pt-3">
                         <p>Distance traveled:</p>
-                        <p>{{ data?.distance_traveled }}</p>
+                        <p>{{ data?.distance_traveled }} km</p>
                     </li>
                 </ul>
             </div>
