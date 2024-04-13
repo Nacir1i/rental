@@ -166,8 +166,9 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
                                         <p class="text-xl leading-loose italic text-gray-500">{{ testimonial.comment }}
                                         </p>
                                         <div class="text-center space-y-2">
-                                            <NuxtImg class="w-20 h-20 rounded-full" provider="cloudinary"
-                                                :src="testimonial.profile" />
+                                            <NuxtImg width="80" height="80" fit="thumbnail"
+                                                :modifiers="{ roundCorner: 'max' }" provider="cloudinary"
+                                                :src="testimonial.profile" :alt="testimonial.name" />
                                             <p>{{ testimonial.name }}</p>
                                         </div>
                                     </CardContent>
