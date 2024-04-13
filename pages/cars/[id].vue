@@ -37,14 +37,17 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
 const album = data.value?.album!;
 const randomImageIndex = Math.floor(Math.random() * (album.length - 1));
 
-console.log(randomImageIndex);
+const modifiers = {
+    gravity: 'center',
+}
 
 </script>
 
 
 <template>
     <section class="relative w-full h-[500px]">
-        <NuxtImg class="object-cover w-full h-full" provider="cloudinary" :src="album[randomImageIndex].url" />
+        <NuxtImg class="object-cover w-full h-full" width="1100" height="500" fit="fill" provider="cloudinary"
+            :modifiers="modifiers" :src="album[randomImageIndex].url" :alt="data?.model" />
         <div
             class="w-full h-full absolute top-0 bg-black/55 left-0 flex gap-8 flex-col items-center justify-center text-center">
             <h1 class="text-white text-6xl font-bold uppercase">{{ data?.mark }} {{ data?.model }}</h1>
@@ -71,9 +74,12 @@ console.log(randomImageIndex);
                             <div class="">
                                 <Card>
                                     <CardContent class="flex items-center justify-center p-0 relative">
-                                        <NuxtImg provider="cloudinary" :src="image.url" />
-                                        <div class="bg-red-600 py-2 px-4 absolute top-0 right-0 flex items-center justify-center lg:hidden">
-                                            <p class="text-white text-sm"><span class="text-lg font-bold">{{ data?.price }}</span> MAD / day</p>
+                                        <NuxtImg width="750" height="420" fit="fill" provider="cloudinary"
+                                            :src="image.url" :alt="data?.model" />
+                                        <div
+                                            class="bg-red-600 py-2 px-4 absolute top-0 right-0 flex items-center justify-center lg:hidden">
+                                            <p class="text-white text-sm"><span class="text-lg font-bold">{{ data?.price
+                                                    }}</span> MAD / day</p>
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -89,7 +95,8 @@ console.log(randomImageIndex);
                             <div class="" :class="index === selectedIndex ? '' : 'opacity-50'">
                                 <Card>
                                     <CardContent class="flex items-center justify-center p-0">
-                                        <NuxtImg provider="cloudinary" :src="image.url" />
+                                        <NuxtImg width="190" height="105" fit="fill" provider="cloudinary"
+                                            :src="image.url" />
                                     </CardContent>
                                 </Card>
                             </div>
@@ -99,7 +106,8 @@ console.log(randomImageIndex);
             </div>
             <div class="col-start-1 col-end-7 lg:col-start-5 lg:col-end-7 lg:row-span-5 lg:row-start-1 space-y-5">
                 <div class="w-full h-[72px] justify-center items-center bg-red-600 hidden lg:flex">
-                    <p class="text-white text-xl font-light"><span class="text-2xl font-bold">{{ data?.price }}</span> MAD / day</p>
+                    <p class="text-white text-xl font-light"><span class="text-2xl font-bold">{{ data?.price }}</span>
+                        MAD / day</p>
                 </div>
                 <div class="w-full py-2 flex gap-4 items-center relative col-start-1 col-end-7 lg:col-end-5">
                     <span class="h-6 border-l-4 border-red-500" />
@@ -142,8 +150,10 @@ console.log(randomImageIndex);
             </div>
             <div class="text-base font-light shadow-md text-slate-500 p-4 space-y-2 col-start-1 col-end-7 lg:col-end-5">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, ea.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et, nulla perspiciatis quod, culpa quos corrupti autem velit nesciunt, quam molestias saepe optio. Doloremque, rerum sequi!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In mollitia nemo repellendus earum iure expedita atque id fugit tempora culpa.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et, nulla perspiciatis quod, culpa quos
+                    corrupti autem velit nesciunt, quam molestias saepe optio. Doloremque, rerum sequi!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In mollitia nemo repellendus earum iure
+                    expedita atque id fugit tempora culpa.</p>
             </div>
         </div>
     </div>
