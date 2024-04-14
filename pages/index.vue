@@ -17,7 +17,7 @@ type Testimonial = {
     profile: string;
 }
 
-const { data } = await useFetch<CarWithAlbum[]>('/api/car/all');
+const { data } = await useFetch<CarWithAlbum[]>('/api/car/newest');
 const emblaMainApi = ref<CarouselApi>()
 const emblaThumbnailApi = ref<CarouselApi>()
 const selectedIndex = ref(0)
@@ -109,7 +109,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
         <div class="w-full flex flex-col justify-center items-center bg-gray-100 gap-16 p-16 px-4">
             <div class="flex flex-col justify-center items-center gap-5">
                 <h1 class="uppercase font-thin text-lg">euismod ullamcorper tortor</h1>
-                <h1 class="uppercase font-bold text-3xl md:text-5xl">our rental fleets</h1>
+                <h1 class="uppercase font-bold text-3xl md:text-5xl">our newest additions</h1>
                 <div class="space-y-2 flex flex-col items-center">
                     <div class="w-36 border-t border-gray-400 group-hover:border-white" />
                     <div class="w-44 border-t border-gray-400 group-hover:border-white" />

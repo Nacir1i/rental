@@ -10,7 +10,7 @@
         },
         {
             label: "our cars",
-            href: "/"
+            href: "/cars/listing"
         },
         {
             label: "our news",
