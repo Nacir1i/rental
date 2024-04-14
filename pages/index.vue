@@ -17,6 +17,7 @@ type Testimonial = {
     profile: string;
 }
 
+const { data } = await useFetch<CarWithAlbum[]>('/api/car/newest');
 const emblaMainApi = ref<CarouselApi>()
 const emblaThumbnailApi = ref<CarouselApi>()
 const selectedIndex = ref(0)
@@ -42,135 +43,6 @@ const TESTIMONIALS: Testimonial[] = [
         comment: "Fantastic car rental service all around! The convenience of booking, the quality of the vehicles, and the friendliness of the staff exceeded my expectations. The entire process was efficient and hassle-free, allowing me to focus more on enjoying my trip. Highly recommend this service for anyone in need of a dependable car rental solution.",
         profile: "v1712082851/cld-sample-5.jpg",
     }
-]
-
-const CARS: CarWithAlbum[] = [
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-mike-bird-170811_p9werg.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "bmw",
-        model: "A4",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-mike-bird-116675_oxrfuk.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "range rover",
-        model: "land road",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-mike-bird-244206_tgzjbf.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "audi",
-        model: "LMAO",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-mike-bird-810357_drksro.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "mercedes",
-        model: "LOL",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-aaron-curtis-119435_edwsrf.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "jeep",
-        model: "A4",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
-    {
-        id: 123,
-        price: 123,
-        album: [
-            {
-                id: 1,
-                url: "v1712082851/pexels-kaan-durmuş-9263456_dredpc.jpg",
-                carId: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            }
-        ],
-        mark: "dacia",
-        model: "A4",
-        release_year: 2016,
-        fuel: "diesel",
-        transmission: "manual",
-        distance_traveled: 123_456,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    },
 ]
 
 function onSelect() {
@@ -237,14 +109,14 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
         <div class="w-full flex flex-col justify-center items-center bg-gray-100 gap-16 p-16 px-4">
             <div class="flex flex-col justify-center items-center gap-5">
                 <h1 class="uppercase font-thin text-lg">euismod ullamcorper tortor</h1>
-                <h1 class="uppercase font-bold text-3xl md:text-5xl">our rental fleets</h1>
+                <h1 class="uppercase font-bold text-3xl md:text-5xl">our newest additions</h1>
                 <div class="space-y-2 flex flex-col items-center">
                     <div class="w-36 border-t border-gray-400 group-hover:border-white" />
                     <div class="w-44 border-t border-gray-400 group-hover:border-white" />
                 </div>
             </div>
             <div class="w-full md:w-4/5 gap-5 flex flex-wrap justify-center items-center">
-                <CardsHomeCar v-for="(car, index) in CARS" :key="index" :car="car" />
+                <CardsHomeCar v-for="(car, index) in data" :key="index" :car="car" />
             </div>
         </div>
         <div class="w-full h-[50rem] lg:h-[30rem] flex justify-center items-center relative">
@@ -294,8 +166,9 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
                                         <p class="text-xl leading-loose italic text-gray-500">{{ testimonial.comment }}
                                         </p>
                                         <div class="text-center space-y-2">
-                                            <NuxtImg class="w-20 h-20 rounded-full" provider="cloudinary"
-                                                :src="testimonial.profile" />
+                                            <NuxtImg width="80" height="80" fit="thumbnail"
+                                                :modifiers="{ roundCorner: 'max' }" provider="cloudinary"
+                                                :src="testimonial.profile" :alt="testimonial.name" />
                                             <p>{{ testimonial.name }}</p>
                                         </div>
                                     </CardContent>

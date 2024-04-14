@@ -4,8 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "pnpm prisma:dev:migrate && nuxt dev",
-    "prisma:dev:migrate": "pnpm dlx prisma migrate dev --name init",
+    "dev": "nuxt dev",
+    "dev:docker": "pnpm db:dev:restart && pnpm dev -o",
+    "db:dev:rm": "docker compose rm rental-dev-db -s -f -v",
+    "db:dev:up": "docker compose up rental-dev-db -d",
+    "db:dev:restart": "pnpm db:dev:rm && pnpm db:dev:up && sleep 3 && pnpm prisma:dev:migrate pnpm prisma db seed",
+    "prisma:dev:migrate": "pnpm dlx prisma migrate dev --name init && pnpm prisma:seed",
     "prisma:seed": "tsx prisma/seed.ts",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -36,6 +40,7 @@
     "@types/node": "^20.12.2",
     "nuxt-icon": "^0.6.10",
     "shadcn-nuxt": "^0.10.2",
+    "tailwindcss-bg-patterns": "^0.3.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.7.1",
     "typescript": "^5.4.3"
